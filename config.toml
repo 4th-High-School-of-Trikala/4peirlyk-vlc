@@ -3,6 +3,7 @@ Title = "4peirlyk - PyVLC"
 Fullscreen = true
 
 [Videos]
+Volume = 60
 
 [Videos.Idle]
 Title = "Idle"

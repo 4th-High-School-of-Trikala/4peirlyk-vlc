@@ -18,7 +18,7 @@ class PlayerWindow(QMainWindow):
         # VLC Player
         self.vlcInstance = vlc.Instance()
         self.player = self.vlcInstance.media_player_new()
-        self.player.audio_set_volume(60)
+        self.player.audio_set_volume(config["Videos"]["Volume"])
 
         # Connect GPIO Input
         gpio.gpioTriggered.connect(self.handle_gpio_trigger)
