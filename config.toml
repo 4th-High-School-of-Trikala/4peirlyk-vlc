@@ -1,0 +1,13 @@
+[Window]
+Title = "4peirlyk - PyVLC"
+Fullscreen = true
+
+[Videos]
+
+[Videos.Idle]
+Title = "Idle"
+Source = "file:///Users/marios/Repos/4peirlyk-pyvlc/assets/background.jpg"
+
+[Videos.GPIO1]
+Title = "Never Gonna Give You Up"
+Source = "file:///Users/marios/Repos/4peirlyk-pyvlc/assets/Rick Astley - Never Gonna Give You Up (Official Music Video) [dQw4w9WgXcQ].webm"
