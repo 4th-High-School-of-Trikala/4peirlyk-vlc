@@ -6,46 +6,45 @@
 
 ```bash
 .
-├── config.toml: Player Configuration
-├── requirements.txt: Python Project Requirments
-└── src: Source File Directory
-    ├── gpio.py: GPIO Related Logic
-    ├── gui: GUI Widget Directory
-    │   ├── alert.py: Alert Popup
-    │   └── vlc.py: VLC Player Logic
-    ├── main.py: Entrypoint
-    ├── qr.py: QR Code Generation Logic
-    └── uri.py: URI Validation Logic
+├── config.toml: Ρυθμίσεις Προγράμματος
+└── src
+    ├── gpio.py: Διαχείριση GPIO 
+    ├── gui 
+    │   ├── alert.py: Παράθυρο Ειδοποίησης
+    │   └── vlc.py: VLC Player
+    ├── main.py: Σημείο εισόδου
+    ├── qr.py: Δημιουργία QR Code
+    └── uri.py: Έλεγχος URI 
 ```
 
 ## Demo
 
 ```mermaid
 sequenceDiagram
-  participant Display
-  participant Script
+  participant Οθόνη
+  participant Πρόγραμμα
   participant RPI
-  actor User
+  actor Χρήστης
 
-  Note over RPI: Tested Platform was a Raspberry Pi 4.<br/>Should work on all major RPI boards
-  Note over Script,RPI: Startup Procedure
-  Script ->> Script: Preload Media and Check URL Validity
+  Note over RPI: Η δοκιμασμένη πλατφόρμα ήταν ένα Raspberry Pi 4.<br/>Λογικά λειτουργεί με όλες τις κύριες πλακέτες RPI.
+  Note over Πρόγραμμα,RPI: Διαδικασία εκκίνησης
+  Πρόγραμμα ->> Πρόγραμμα: Προφόρτωση μέσων και έλεγχος εγκυρότητας URI
 
-  Script ->> RPI: Configure GPIO Pins
-  Script ->> Script: Register Playable Media and Callbacks
+  Πρόγραμμα ->> RPI: Ρύθμιση GPIO
+  Πρόγραμμα ->> Πρόγραμμα: Εγγραφή αναπαραγώγιμων πολυμέσεων και Callback
 
-  Script ->> Display: Register PyQT Window and Hook VLC
-  Script ->> Display: Play IDLE Media
+  Πρόγραμμα ->> Οθόνη: Εγγραφή πολυμέσων και εγγραφή Callback
+  Πρόγραμμα ->> Οθόνη: Αναπαραγωγή IDLE
 
-  Note over Script,RPI: On Button Press Procedure
-  User ->> RPI: Press on Button
-  RPI -->> Script: Calls Callback
-  Script ->> Script: Loads Target From Config
-  Script ->> Script: Generate QR Code from Config
-  Script ->> Display: Set Media from Preloaded List
-  Script ->> Display: Overlay QR Code
+  Note over Πρόγραμμα,RPI: Διαδικασία μετά το πάτημα του κουμπιού
+  Χρήστης ->> RPI: Πάτημα κουμπιού
+  RPI -->> Πρόγραμμα: Κλήση Callback
+  Πρόγραμμα ->> Πρόγραμμα: Φορτώνει το κατάλληλο πολυμέσο από Ρυθμίσεις
+  Πρόγραμμα ->> Πρόγραμμα: Δημιουργία QR κωδικού
+  Πρόγραμμα ->> Οθόνη: Ορισμός πολυμέσων από λίστα
+  Πρόγραμμα ->> Οθόνη: Επικάλυψη QR Code
 
-  Note over Script,RPI: When Media Playback Finished
-  Script ->> Display: Set Media to IDLE
-  Script ->> Display: Hide QR Code
+  Note over Πρόγραμμα,RPI: Όταν ολοκληρωθεί η αναπαραγωγή πολυμέσων
+  Πρόγραμμα ->> Οθόνη: Αναπαραγωγή IDLE
+  Πρόγραμμα ->> Οθόνη: Απόκρυψη κωδικού QR
 ```
