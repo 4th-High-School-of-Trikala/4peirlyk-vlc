@@ -27,6 +27,7 @@ sequenceDiagram
   participant RPI
   actor User
 
+  Note over RPI: Tested Platform was a Raspberry Pi 4.<br/>Should work on all major RPI boards
   Note over Script,RPI: Startup Procedure
   Script ->> Script: Preload Media and Check URL Validity
 
