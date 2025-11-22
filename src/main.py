@@ -4,8 +4,9 @@ from PyQt5.QtCore import pyqtSignal
 
 import gui
 import gui.vlc
-from gpio import GPIOSignals
+from gpio import GPIOSignals, register_gpio_pins
 import uri
+import qrcode
 
 app = QApplication([])
 
@@ -14,13 +15,11 @@ config = toml.load("./config.toml")
 uri.check_valid_config_uris(config)
 
 # GPIO
-gpio = GPIOSignals()
+gpio = GPIOSignals(config)
+register_gpio_pins(config, gpio)
 
 # Create Player
 player = gui.vlc.PlayerWindow(config, gpio)
-
-# Trigger Fake GPIO
-gpio.trigger_gpio(1)
 
 # Show Window
 if config["Window"]["Fullscreen"]:
